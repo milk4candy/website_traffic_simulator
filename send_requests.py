@@ -7,12 +7,11 @@ from lxml.html import fromstring
 
 argument_parser = argparse.ArgumentParser(prog='r.py')
 argument_parser.add_argument('--url', dest='url', required=True)
-argument_parser.add_argument('--ip-list-file', dest='ip_list_file', required=True)
 argument_parser.add_argument('--min-request-times', dest='min_request_times', type=int, default=1)
 argument_parser.add_argument('--max-request-times', dest='max_request_times', type=int, default=10)
 argument_parser.add_argument('--min-wait', dest='min_wait', type=float, default=2)
 argument_parser.add_argument('--max-wait', dest='max_wait', type=float, default=5)
-argument_parser.add_argument('--thread-num', dest='thread_num', type=int, default=2)
+argument_parser.add_argument('--users', dest='thread_num', type=int, default=2)
 
 
 def get_proxies():
@@ -64,7 +63,6 @@ def send_requests(url, request_times, min_wait, max_wait, thread_serial, ip, pro
 
 print("\nProgram start.")
 args = argument_parser.parse_args()
-ip_list_file = args.ip_list_file
 url = args.url
 min_request_times = args.min_request_times
 max_request_times = args.max_request_times +1
@@ -72,7 +70,7 @@ min_wait = args.min_wait
 max_wait = args.max_wait
 thread_num = args.thread_num
 
-with open(ip_list_file, 'r') as f:
+with open('./ip_list.txt', 'r') as f:
     ip_list = f.readlines()
 
 random.shuffle(ip_list)
