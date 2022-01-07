@@ -5,11 +5,11 @@ import requests
 import threading
 from lxml.html import fromstring
 
-argument_parser = argparse.ArgumentParser(prog='r.py')
+argument_parser = argparse.ArgumentParser(prog='send_requests.py')
 argument_parser.add_argument('--url', dest='url', required=True)
 argument_parser.add_argument('--min-request-times', dest='min_request_times', type=int, default=1)
 argument_parser.add_argument('--max-request-times', dest='max_request_times', type=int, default=10)
-argument_parser.add_argument('--min-wait', dest='min_wait', type=float, default=2)
+argument_parser.add_argument('--min-wait', dest='min_wait', type=float, default=1)
 argument_parser.add_argument('--max-wait', dest='max_wait', type=float, default=5)
 argument_parser.add_argument('--users', dest='thread_num', type=int, default=2)
 
