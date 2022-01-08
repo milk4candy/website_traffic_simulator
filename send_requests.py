@@ -3,6 +3,7 @@ import random
 import argparse
 import requests
 import threading
+from datetime import datetime, timedelta
 from lxml.html import fromstring
 
 argument_parser = argparse.ArgumentParser(prog='send_requests.py')
@@ -60,8 +61,8 @@ def send_requests(url, request_times, min_wait, max_wait, thread_serial, ip, pro
 
     print("Thread#"+str(thread_serial)+': Thread End.')
 
-
-print("\nProgram start.")
+start_time = datetime.now()
+print("\nProgram start...")
 args = argument_parser.parse_args()
 url = args.url
 min_request_times = args.min_request_times
@@ -101,6 +102,9 @@ while request_thread_made < thread_num:
 for thread in threads:
     thread.join()
 
-print('Program End. Press enter to exit.')
+end_time = datetime.now()
+exec_timedelta = end_time - start_time
+exec_time_in_minute = round(exec_timedelta/timedelta(minutes=1), 2)
+print('Program End. Total executing time: ' + str(exec_time_in_minute) + ' minutes. Press enter to exit.')
 exit()
 
